@@ -1,32 +1,23 @@
 module.exports = {
-    ignorePatterns: ['dist'],
-    'env': {
-        'node': true,
-        'browser': true,
-        'es2021': true
-    },
-    'extends': 'eslint:recommended',
-    'parserOptions': {
-        'ecmaVersion': 12,
-        'sourceType': 'module'
-    },
-    'rules': {
-        'indent': [
-            'error',
-            4
-        ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        'semi': [
-            'error',
-            'never'
-        ],
-        'no-unused-vars': 1
-    }
+  ignorePatterns: ['dist'],
+  plugins: ['prettier'],
+
+  env: {
+    node: true,
+    browser: true,
+    es2021: true
+  },
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: 'module'
+  },
+  rules: {
+    'prettier/prettier': [
+      'error',
+      { singleQuote: true, semi: false, trailingComma: 'none' }
+    ],
+    'linebreak-style': ['error', 'unix'],
+    'no-unused-vars': 1
+  }
 }
