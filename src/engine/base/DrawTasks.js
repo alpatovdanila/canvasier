@@ -11,8 +11,8 @@ const strokeRect = ({ x, y, w, h, color = 'black', strokeWidth = 1 }) => (
   ctx.strokeRect(x, y, w, h)
 }
 
-const image = ({ x, y, image, w, h }) => (ctx) => {
-  ctx.drawImage(image, x, y, w, h)
+const image = ({ x, y, imageAsset, w, h }) => (ctx) => {
+  ctx.drawImage(imageAsset.asset, x, y)
 }
 
 const text = ({ x, y, text, color = 'black' }) => (ctx) => {

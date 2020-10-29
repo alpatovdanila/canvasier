@@ -10,6 +10,12 @@
       "pre-commit": "yarn lint"
     }
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ],
   "scripts": {
     "dev": "parcel dev index.html --open",
     "build": "parcel build index.html",

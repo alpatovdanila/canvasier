@@ -1,6 +1,7 @@
 import { Render } from './Render'
 import { Mouse } from './Mouse'
 import { ActorsRunner } from './ActorsRunner'
+import { Assets } from './Assets'
 
 class EngineService {
   init(config) {
@@ -8,20 +9,17 @@ class EngineService {
       render: { width, height, targetContainer, targetFps = 30 }
     } = config
 
-    console.log(config)
-
-    const canvas = document.createElement('canvas')
-    canvas.width = width
-    canvas.height = height
-    const context = canvas.getContext('2d')
-    targetContainer.appendChild(canvas)
-
-    Render.init(context)
-    Mouse.init(canvas)
-
-    ActorsRunner.addTask((actor) => actor.$$step())
-
-    this._mainLoopStep(1000 / targetFps)
+    Assets.$$loadAll().then(() => {
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const context = canvas.getContext('2d')
+      targetContainer.appendChild(canvas)
+      Render.init(context)
+      Mouse.init(canvas)
+      ActorsRunner.addTask((actor) => actor.$$step())
+      this._mainLoopStep(1000 / targetFps)
+    })
   }
 
   _mainLoopStep(timeout) {
