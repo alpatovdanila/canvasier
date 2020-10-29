@@ -15,14 +15,15 @@ export class PubSub {
   off(eventName, handler) {
     if (this._listeners[eventName]) {
       this._listeners[eventName] = this._listeners[eventName].filter(
-        (h) => h !== handler
+        h => h !== handler
       )
     }
   }
 
   dispatchEvent(eventName, payload) {
     if (this.listeners[eventName]) {
-      this.listeners[eventName].forEach((handler) => handler(payload))
+      console.log(this, ': Dispatching event', eventName, payload)
+      this.listeners[eventName].forEach(handler => handler(payload))
     }
   }
 }

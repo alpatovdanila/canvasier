@@ -21,11 +21,11 @@ class RenderService {
       )
     })
 
-    ActorsRunner.addTask((actor) => {
+    ActorsRunner.addTask(actor => {
       const tasks = actor.$$draw()
       if (tasks) {
         if (tasks.forEach) {
-          tasks.forEach((task) => task(this._context))
+          tasks.forEach(task => task(this._context))
         } else {
           tasks(this._context)
         }

@@ -1,7 +1,7 @@
 import { PubSub } from '../lib/PubSub'
 import { Actors } from './Actors'
 
-const createPayload = (originalEvent) => {
+const createPayload = originalEvent => {
   return {
     x: originalEvent.offsetX,
     y: originalEvent.offsetY,
@@ -18,12 +18,12 @@ class MouseService extends PubSub {
   }
 
   init(canvasElement) {
-    canvasElement.addEventListener('mousemove', (event) => {
+    canvasElement.addEventListener('mousemove', event => {
       this.x = event.offsetX
       this.y = event.offsetY
     })
 
-    canvasElement.addEventListener('mousedown', (event) => {
+    canvasElement.addEventListener('mousedown', event => {
       const payload = createPayload(event)
 
       const target = this.findEventTarget(payload.x, payload.y)
@@ -36,7 +36,7 @@ class MouseService extends PubSub {
       this.dispatchEvent('click', payload)
     })
 
-    canvasElement.addEventListener('mouseup', (event) => {
+    canvasElement.addEventListener('mouseup', event => {
       const payload = createPayload(event)
 
       const target = this.findEventTarget(payload.x, payload.y)
@@ -49,7 +49,7 @@ class MouseService extends PubSub {
   }
 
   findEventTarget(x, y) {
-    return Actors.findReverse((actor) => actor.$$boundingBox?.checkPoint(x, y))
+    return Actors.findReverse(actor => actor.$$boundingBox?.checkPoint(x, y))
   }
 }
 

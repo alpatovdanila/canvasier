@@ -1,9 +1,5 @@
-import image from './image.png'
-import sound from './abmient.wav'
-import { Assets, Mouse } from '../engine/services'
+import { Mouse } from '../engine/services'
 import { Actor, DrawTasks, Regions } from '../engine/base'
-
-Assets.register([image, sound])
 
 export class Ball extends Actor {
   init({ w, h, color = 'black ' }) {
@@ -18,8 +14,6 @@ export class Ball extends Actor {
     this.on('mouseup', () => {
       this.color = this.initialColor
     })
-
-    console.log(Assets)
   }
 
   step() {
@@ -32,7 +26,7 @@ export class Ball extends Actor {
   }
 
   draw() {
-    const { x, y } = this
-    return DrawTasks.image({ x, y, imageAsset: Assets.get(image) })
+    const { x, y, w, h, color } = this
+    return DrawTasks.fillRect({ x, y, w, h, color })
   }
 }

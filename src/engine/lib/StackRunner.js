@@ -20,7 +20,7 @@ export class StackRunner extends PubSub {
 
   run() {
     this.dispatchEvent('beforerun')
-    this.stack.forEach((item) => this._tasks.forEach((task) => task(item)))
+    this.stack.forEach((item, stack) => this._tasks.forEach(task => task(item)))
     this.dispatchEvent('afterrun')
   }
 }

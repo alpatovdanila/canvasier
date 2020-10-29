@@ -17,7 +17,7 @@ class EngineService {
       targetContainer.appendChild(canvas)
       Render.init(context)
       Mouse.init(canvas)
-      ActorsRunner.addTask((actor) => actor.$$step())
+      ActorsRunner.addTask(actor => actor.$$step())
       this._mainLoopStep(1000 / targetFps)
     })
   }

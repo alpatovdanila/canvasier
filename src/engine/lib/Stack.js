@@ -8,11 +8,11 @@ export class Stack {
   }
 
   push(item) {
-    this.items.push(item)
+    this._items = this.items.concat(item)
   }
 
   remove(item) {
-    this.items = this.items.filter((i) => i !== item)
+    this.items = this.items.filter(i => i !== item)
   }
 
   forEach(fn) {
@@ -29,5 +29,9 @@ export class Stack {
       if (fn(item)) return item
     }
     return null
+  }
+
+  filter(fn) {
+    return this.items.filter(fn)
   }
 }
